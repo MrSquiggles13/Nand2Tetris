@@ -1,0 +1,312 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Snake/Snake.jack
+
+/** Snake program. */
+class Snake 
+{
+   field Array m_body, m_newSnake;
+   field int m_numOfBody;
+   field int m_preDir;
+   field int m_direction;
+   field Block m_block, m_block2;
+   
+   constructor Snake new(int numOfBody, int direction)
+   {	
+		let m_body = Array.new(numOfBody);
+		let m_direction = direction;
+		let m_numOfBody = numOfBody;
+
+		return this;
+   }
+
+   method void setup(Grid grid)
+   {
+		var int count;
+		var int yMod;
+		let yMod = 0;
+		let count = 0;
+		
+		while(count < m_numOfBody)
+		{
+			let m_body[count] = Block.new((grid.getBorderX1() + grid.getBorderX2())/2,((grid.getBorderY1() + grid.getBorderY2())/2) + yMod, 1);
+			let yMod = yMod + 5;
+			let count = count + 1;
+		}
+
+		do draw();
+
+		return;
+   }
+
+   method void draw()
+   {
+		var int count;
+		let count = 0;
+
+		do Screen.setColor(true);
+		while(count < m_numOfBody)
+		{
+			let m_block = m_body[count];
+			do Screen.drawRectangle(m_block.getPosX(), m_block.getPosY(), m_block.getPosX() + 5, m_block.getPosY() + 5); 
+			let count = count + 1;
+		}
+
+		return;
+   }
+
+   method void erase()
+   {
+		var int count;
+		let count = 0;
+
+		do Screen.setColor(false);
+		while(count < m_numOfBody)
+		{
+			let m_block = m_body[count];
+			do Screen.drawRectangle(m_block.getPosX(), m_block.getPosY(), m_block.getPosX() + 5, m_block.getPosY() + 5); 
+			let count = count + 1;
+		}
+
+		return;
+   }
+
+   method boolean checkIfAte(Fruit fruit)
+   {
+		var int count, count2, count3, count4;
+		let count = 0;
+		let m_block = m_body[0];
+		
+		while(count < 6)
+		{
+			let count2 = 0;
+			while(count2 < 6)
+			{
+				if((m_block.getPosX() + count) = (fruit.getPosX() + count2))
+				{
+					let count3 = 0;
+					while(count3 < 6)
+					{
+						let count4 = 0;
+						while(count4 < 6)
+						{
+							if((m_block.getPosY() + count3) = (fruit.getPosY() + count4))
+							{
+								do grow();
+								do fruit.rePos();
+								return true;
+							}
+							let count4 = count4 + 1;
+						}
+						let count3 = count3 + 1;
+					}
+					
+				}
+				let count2 = count2 + 1;
+			}
+
+			let count = count + 1;
+		}
+		
+		return false;
+   }
+
+   method void move(Grid grid)
+   {
+		var int count;
+		let count = 0;
+
+		do erase();
+
+		while(count < m_numOfBody)
+		{
+			let m_block = m_body[count];
+
+			if(count = 0)
+			{
+				do m_block.setPreDirection(m_block.getDirection());
+				do m_block.setDirection(m_direction);
+
+				if(m_block.getDirection() = 1)
+				{
+					if(m_block.getPreDirection() = 2)
+					{
+						do m_block.setDirection(2);
+					}
+				}
+
+				if(m_block.getDirection() = 2)
+				{
+					if(m_block.getPreDirection() = 1)
+					{
+						do m_block.setDirection(1);
+					}
+				}
+
+				if(m_block.getDirection() = 3)
+				{
+					if(m_block.getPreDirection() = 4)
+					{
+						do m_block.setDirection(4);
+					}
+				}
+
+				if(m_block.getDirection() = 4)
+				{
+					if(m_block.getPreDirection() = 3)
+					{
+						do m_block.setDirection(3);
+					}
+				}
+			}
+			else
+			{
+				let m_block2 = m_body[count - 1];
+				do m_block.setPreDirection(m_block.getDirection());
+				do m_block.setDirection(m_block2.getPreDirection());
+			}
+
+			if(m_block.getDirection() = 1) //up
+			{
+				if(m_block.getPosY() - 5 = grid.getBorderY1())
+				{
+					do m_block.setPosY(grid.getBorderY2() - 5);
+				}
+				do m_block.setPosY(m_block.getPosY() - 5);
+			}
+
+			if(m_block.getDirection() = 2) //down
+			{
+				if(m_block.getPosY() + 5 = (grid.getBorderY2() - 5))
+				{
+					do m_block.setPosY(grid.getBorderY1());
+				}
+				do m_block.setPosY(m_block.getPosY() + 5);
+			}
+
+			if(m_block.getDirection() = 3) //left
+			{
+				if((m_block.getPosX() - 5) = grid.getBorderX1())
+				{
+					do m_block.setPosX(grid.getBorderX2() - 5);
+				}
+				do m_block.setPosX(m_block.getPosX() - 5);
+			}
+
+			if(m_block.getDirection() = 4) //right
+			{
+				if((m_block.getPosX() + 5) = (grid.getBorderX2() - 5))
+				{
+					do m_block.setPosX(grid.getBorderX1());
+				}
+				do m_block.setPosX(m_block.getPosX() + 5);
+			}
+
+			let count = count + 1;
+		}
+
+		do draw();
+		
+		return;
+   }
+
+   method void grow()
+   {
+		var int count, block2X, block2Y;
+		let count = 0;
+		let m_numOfBody = m_numOfBody + 1;
+		let m_newSnake = Array.new(m_numOfBody);
+
+		while(count < (m_numOfBody - 1))
+		{
+			let m_newSnake[count] = m_body[count];
+			let count = count + 1;
+		}
+
+		let m_block2 = m_body[m_numOfBody - 2];
+		let block2X = m_block2.getPosX();
+		let block2Y = m_block2.getPosY();
+
+		if(m_block2.getDirection() = 1)
+		{
+			let m_newSnake[m_numOfBody - 1] = Block.new(block2X, (block2Y + 5), 1);
+		}
+
+		if(m_block2.getDirection() = 2)
+		{
+			let m_newSnake[m_numOfBody - 1] = Block.new(block2X, (block2Y - 5), 2);
+		}
+
+		if(m_block2.getDirection() = 3)
+		{
+			let m_newSnake[m_numOfBody - 1] = Block.new((block2X + 5), block2Y, 3);
+		}
+
+		if(m_block2.getDirection() = 4)
+		{
+			let m_newSnake[m_numOfBody - 1] = Block.new((block2X - 5), block2Y, 4);
+		}
+
+		do m_body.dispose();
+		let m_body = Array.new(m_numOfBody);
+
+		let count = 0;
+		while(count < m_numOfBody)
+		{
+			let m_body[count] = m_newSnake[count];
+			let count = count + 1;
+		}
+
+		do m_newSnake.dispose();
+
+		return;
+   }
+
+   method boolean isAlive()
+   {
+		var int count, count2, count3, count4, count5;
+		let count = 1;
+		let m_block = m_body[0];
+
+		while(count < m_numOfBody)
+		{
+			let m_block2 = m_body[count];
+			let count2 = 0;
+			while(count2 < 5)
+			{
+				let count3 = 0;
+				while(count3 < 5)
+				{
+					if((m_block.getPosX() + count2) = (m_block2.getPosX() + count3))
+					{
+						let count4 = 0;
+						while(count4 < 5)
+						{
+							let count5 = 0;
+							while(count5 < 5)
+							{
+								if((m_block.getPosY() + count4) = (m_block2.getPosY() + count5))
+								{
+									return false;
+								}
+								let count5 = count5 + 1;
+							}
+							let count4 = count4 + 1;
+						}
+					}
+					let count3 = count3 + 1;
+				}
+				let count2 = count2 + 1;
+			}
+			let count = count + 1;
+		}
+		return true;
+   }
+
+   method void setDirection(int set) {let m_direction = set; return;}
+   method void setPreDirection(int set) {let m_direction = set; return;}
+
+   method int getDirection(){return m_direction;}
+   method int getPreDirection(){return m_preDir;}
+}

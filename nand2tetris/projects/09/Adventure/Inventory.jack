@@ -1,0 +1,71 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Average/Main.jack
+
+// Inputs some numbers and computes their average
+class Inventory {
+	field int m_bulk;
+	field int m_numItems;
+	field Array m_itemArr;
+
+	constructor Inventory new(int bulk, int numItems){
+		let m_bulk = bulk;
+		let m_numItems = numItems;
+		let m_itemArr = Array.new(bulk);
+		return this;
+	}
+
+	method void printInventory(){
+		var int count;
+		let count = 0;
+		while(count < m_numItems){
+			//do m_itemArr[count].print();
+			let count = count + 1;
+		}
+		return;
+	}
+
+	method void addWeapon(Weapon weapon){
+		let m_itemArr[m_numItems + 1] = weapon;
+		let m_numItems = m_numItems + 1;
+		return;
+	}
+
+	method void addArmor(Armor armor){
+		let m_itemArr[m_numItems + 1] = armor;
+		let m_numItems = m_numItems + 1;
+		return;
+	}
+
+	method void addPotion(Potion potion){
+		let m_itemArr[m_numItems + 1] = potion;
+		let m_numItems = m_numItems + 1;
+		return;
+	}
+	
+	method void removeItem(int index){
+		var Array newArr;
+		var int count;
+		let m_itemArr[index] = null;
+		let newArr = Array.new(m_bulk);
+		let count = 0;
+		let index = 0;
+		while (count < m_numItems){
+			if (~(m_itemArr[count] = null)){
+				let newArr[index] = m_itemArr[count];
+				let index = index + 1;
+			}
+			let count = count + 1;
+		}
+		let m_numItems = m_numItems - 1;
+		let m_itemArr = newArr;
+		do newArr.dispose();
+		return;
+	}
+
+	method void updateBulk(int stat){
+		let m_bulk = stat;
+		return;
+	}
+}

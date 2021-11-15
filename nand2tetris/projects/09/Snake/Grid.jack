@@ -1,0 +1,34 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Snake/Grid.jack
+
+/** Snake program. */
+class Grid {
+	field int m_borderX1, m_borderY1, m_borderX2, m_borderY2;
+
+	constructor Grid new(int borderX1, int borderY1, int borderX2, int borderY2){
+		let m_borderX1 = borderX1;
+		let m_borderY1 = borderY1;
+		let m_borderX2 = borderX2;
+		let m_borderY2 = borderY2;
+
+		do draw();
+
+		return this;
+	}
+   
+   method void draw(){
+		do Screen.setColor(true);
+		do Screen.drawRectangle(m_borderX1, m_borderY1, m_borderX2, m_borderY2);
+		do Screen.setColor(false);
+		do Screen.drawRectangle(m_borderX1 + 5, m_borderY1 + 5, m_borderX2 - 5, m_borderY2 - 5);
+
+		return;
+   }
+
+   method int getBorderX1() {return m_borderX1;}
+   method int getBorderX2() {return m_borderX2;}
+   method int getBorderY1() {return m_borderY1;}
+   method int getBorderY2() {return m_borderY2;}
+}

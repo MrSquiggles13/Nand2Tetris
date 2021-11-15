@@ -1,0 +1,5 @@
+﻿  VM Emulator.cpp
+C:\Users\ayres\source\repos\VM Emulator\VM Emulator\VM Emulator.cpp(23,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ayres\source\repos\VM Emulator\VM Emulator\VM Emulator.cpp(417,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ayres\source\repos\VM Emulator\VM Emulator\VM Emulator.cpp(529,27): warning C4018: '<': signed/unsigned mismatch
+  VM Emulator.vcxproj -> C:\Users\ayres\source\repos\VM Emulator\Debug\VM Emulator.exe

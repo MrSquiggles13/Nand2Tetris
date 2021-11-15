@@ -1,0 +1,60 @@
+function Block.new 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+push argument 2
+pop this 2
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push pointer 0
+return
+function Block.setDirection 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 2
+push constant 0
+return
+function Block.setPreDirection 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 3
+push constant 0
+return
+function Block.setPosX 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push constant 0
+return
+function Block.setPosY 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 1
+push constant 0
+return
+function Block.getPosX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Block.getPosY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Block.getPreDirection 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function Block.getDirection 0
+push argument 0
+pop pointer 0
+push this 2
+return

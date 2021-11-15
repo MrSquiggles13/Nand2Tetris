@@ -1,0 +1,38 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Snake/Main.jack
+
+/** Snake program. */
+class Main {
+   function void main() 
+   {
+      var Game game;
+      var int seed;
+      var char key;
+
+      do Output.println();
+      do Output.println();
+      do Output.println();
+      do Output.println();
+      do Output.printString("                       Main Menu");
+      do Output.println();
+      do Output.println();
+      do Output.printString("                Hit Any Key to Continue");
+
+      while (key = 0)
+      {
+         let key = Keyboard.keyPressed();
+         let seed = seed * 3 + 8 /2;
+      }
+
+      do Screen.clearScreen();
+
+      do Random.setSeed(seed);
+      let game = Game.new(true);
+      while(game.getPlaying()){
+        do game.play();
+      }
+      return;
+   }
+}

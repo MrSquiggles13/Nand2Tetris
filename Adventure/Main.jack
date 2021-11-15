@@ -1,0 +1,26 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Average/Main.jack
+
+// Inputs some numbers and computes their average
+class Main {
+   function void main() {
+      var Adventure game;
+
+      let game = Adventure.new(true);
+      while (game.getPlaying()){
+        do game.isPlaying();
+      }
+      return;
+   }
+}
+
+
+//make a menu
+//fight system
+//loot
+//equipment
+//shop?
+//save/load
+//

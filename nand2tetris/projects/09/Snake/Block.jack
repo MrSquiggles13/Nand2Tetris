@@ -1,0 +1,29 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Snake/Sprite.jack
+
+/** Snake program. */
+class Block {
+
+	field int m_posX, m_posY;
+	field int m_direction, m_preDir;
+
+	constructor Block new(int posX, int posY, int direction)
+	{
+		let m_direction = direction;
+		let m_posX = posX;
+		let m_posY = posY;
+		return this;
+	}
+
+	method void setDirection(int set){let m_direction = set; return;}
+	method void setPreDirection(int set){let m_preDir = set; return;}
+	method void setPosX(int set){let m_posX = set; return;}
+	method void setPosY(int set){let m_posY = set; return;}
+
+	method int getPosX(){return m_posX;}
+	method int getPosY(){return m_posY;}
+	method int getPreDirection(){return m_preDir;}
+	method int getDirection(){return m_direction;}
+}

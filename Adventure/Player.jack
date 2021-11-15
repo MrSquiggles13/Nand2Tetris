@@ -1,0 +1,64 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Average/Main.jack
+
+// Inputs some numbers and computes their average
+class Player {
+   field int m_healthCurrent, m_healthTotal, m_damageMin, m_damageMax, m_level, m_experienceCurrent, m_experienceNext;
+   field boolean m_isAlive;
+   field Weapon m_weapon;
+   field Potion m_potion;
+
+   constructor Player new(int healthCurrent, int healthTotal, int damageMin, int damageMax, int level, int experienceCurrent, int experienceNext){
+		let m_healthCurrent = healthCurrent;
+		let m_healthTotal = healthTotal;
+		let m_damageMin = damageMin;
+		let m_damageMax = damageMax;
+		let m_level = level;
+		let m_experienceCurrent = experienceCurrent;
+		let m_experienceNext = experienceNext;
+		let m_isAlive = true;
+
+		return this;
+   }
+
+   method void levelUp(){
+		while (m_experienceCurrent > m_experienceNext){
+			let m_level = m_level + 1;
+			let m_experienceCurrent = m_experienceCurrent - m_experienceNext;
+			let m_experienceNext = m_experienceNext + ((50 / 3) * (m_level * m_level * m_level) - 6 * (m_level * m_level)) + ((17 * m_level) - 12) + 100;
+			let m_healthTotal = m_healthTotal + (m_level * 3 / 2);
+			let m_healthCurrent = m_healthTotal;
+			let m_damageMax = m_damageMax + (m_level / 2);
+			let m_damageMin = m_damageMax / 2;
+		}
+		return;
+   }
+
+   //getters
+   method int getHealthCurrent(){return m_healthCurrent;}
+   method int getHealthTotal(){return m_healthTotal;}
+   method int getDamageMin(){return m_damageMin;}
+   method int getDamageMax(){return m_damageMax;}
+   method int getLevel(){return m_level;}
+   method int getExperienceCurrent(){return m_experienceCurrent;}
+   method int getExperienceNext(){return m_experienceNext;}
+
+   method boolean getIsAlive(){return m_isAlive;}
+   method Weapon getWeapon(){return m_weapon;}
+   method Potion getPotion(){return m_potion;}
+
+   //setters
+   method void setHealthCurrent(int deduct){let m_healthCurrent = m_healthCurrent + deduct; return;}
+   method void setHealthTotal(int deduct){let m_healthTotal = m_healthTotal + deduct; return;}
+   method void setDamageMin(int deduct){let m_damageMin = m_damageMin + deduct; return;}
+   method void setDamageMax(int deduct){let m_damageMax = m_damageMax + deduct; return;}
+   method void setLevel(int deduct){let m_level = m_level + deduct; return;}
+   method void setExperienceCurrent(int deduct){let m_experienceCurrent = m_experienceCurrent + deduct; return;}
+   method void setExperienceNext(int deduct){let m_experienceNext = m_experienceNext + deduct; return;}
+
+   method void setIsAlive(boolean alt){let m_isAlive = alt; return;}
+   method void setWeapon(Weapon newWep){let m_weapon = newWep; return;}
+   method void setPotion(Potion newPot){let m_potion = newPot; return;}
+}

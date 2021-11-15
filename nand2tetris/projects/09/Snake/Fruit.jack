@@ -1,0 +1,47 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Snake/Fruit.jack
+
+/** Snake program. */
+class Fruit {
+	field int m_points;
+	field int m_posX, m_posY;
+
+	constructor Fruit new(int posX, int posY, int points){
+		let m_points = points;
+		let m_posX = posX;
+		let m_posY = posY;
+		return this;
+	}
+
+	method void rePos()
+	{
+		do erase();
+
+		let m_posX = (Random.randRange(185) + 155);
+		let m_posY = (Random.randRange(185) + 35);
+
+		do draw();
+		return;
+	}
+
+	method void erase()
+	{
+		do Screen.setColor(false);
+		do Screen.drawRectangle(m_posX, m_posY, m_posX + 5, m_posY + 5);
+		return;
+	}
+
+	method void draw()
+	{
+		do Screen.setColor(true);
+		do Screen.drawRectangle(m_posX, m_posY, m_posX + 5, m_posY + 5);
+		return;
+	}
+
+	method int getPosX(){return m_posX;}
+	method int getPosY(){return m_posY;}
+	method int getPoints(){return m_points;}
+
+}

@@ -1,0 +1,94 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Average/Main.jack
+
+// Inputs some numbers and computes their average
+class Adventure {
+   field boolean m_playing;
+   field Player player;
+
+   constructor Adventure new(boolean playing){let m_playing = playing; let player = Player.new(10, 10, 1, 3, 2, 1, 0, 100); return this;}
+
+   method void setPlaying(boolean change){let m_playing = change; return;}
+   method boolean getPlaying(){return m_playing;}
+
+   method void isPlaying(){
+		var int menuChoice;
+		var Inventory tempInv;
+
+		do Screen.clearScreen();
+		do Output.moveCursor(0, 0);
+
+		do Output.moveCursor(0, 0);
+		do Output.printString("    **Main Menu**");
+		do Output.println();
+		do Output.printString("1.New Game");
+		do Output.println();
+		do Output.printString("2.Travel");
+		do Output.println();
+		do Output.printString("3.Shop");
+		do Output.println();
+		do Output.printString("4.Level Up");
+		do Output.println();
+		do Output.printString("5.Equipment");
+		do Output.println();
+		do Output.printString("6.Stats");
+		do Output.println();
+		do Output.println();
+		let menuChoice = Keyboard.readInt("Please select [1-6]: ");
+		
+		do Screen.clearScreen();
+		do Output.moveCursor(0, 0);
+
+		if (menuChoice = 1){
+			do Output.printString("Lets start over");
+			let m_playing = false;
+		}
+		if (menuChoice = 2){
+			do Output.printString("We is making travel");
+		}
+		if (menuChoice = 3){
+			do Output.printString("Oh shit the shop");
+		}
+		if (menuChoice = 4){
+			do Output.printString("I leveled up");
+			do player.levelUp();
+		}
+		if (menuChoice = 5){
+			do Output.printString("I got some stuff");
+			let tempInv = player.getInventory();
+			do tempInv.printInventory();
+		}
+		if (menuChoice = 6){
+			do Output.printString("Who am I");
+			do Output.println();
+			do Output.printString("Health: ");
+			do Output.printInt(player.getHealthCurrent());
+			do Output.printString("/");
+			do Output.printInt(player.getHealthTotal());
+			do Output.println();
+			do Output.printString("Damage: ");
+			do Output.printInt(player.getDamageMin());
+			do Output.printString("-");
+			do Output.printInt(player.getDamageMax());
+			do Output.println();
+			do Output.printString("Level: ");
+			do Output.printInt(player.getLevel());
+			do Output.println();
+			do Output.printString("Experience: ");
+			do Output.printInt(player.getExperienceCurrent());
+			do Output.printString("/");
+			do Output.printInt(player.getExperienceNext());
+		}
+
+		do player.setExperienceCurrent(500);
+
+		do Output.println();
+		do Output.println();
+		do Keyboard.readInt("***Hit Enter***");
+		do Screen.clearScreen();
+
+		return;
+   }
+}

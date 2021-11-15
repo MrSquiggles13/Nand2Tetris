@@ -1,0 +1,49 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Average/Main.jack
+
+// Inputs some numbers and computes their average
+class Potion {
+	field String m_type;
+	field int m_level;
+	field int m_hpMod;
+	field int m_price;
+
+	constructor Potion new(String type, int level, int hpMod, int price){
+		let m_type = type;
+		let m_level = level;
+		let m_hpMod = hpMod;
+		let m_price = price;
+
+		return this;
+	}
+
+	method void print(){
+		do Output.printString("Type: ");
+		do Output.printString(m_type);
+		do Output.println();
+		do Output.printString("Level: ");
+		do Output.printInt(m_level);
+		do Output.println();
+		do Output.printString("HP Mod: ");
+		do Output.printInt(m_hpMod);
+		do Output.println();
+		do Output.printString("Price: ");
+		do Output.printInt(m_price);
+		do Output.println();
+
+		return;
+	}
+	
+	method String getType(){return m_type;}
+	method int getLevel(){return m_level;}
+	method int getHpMod(){return m_hpMod;}
+	method int getPrice(){return m_price;}
+
+	method void setType(String newType){let m_type = newType; return;}
+	method void setLevel(int newLevel){let m_level = m_level + newLevel; return;}
+	method void setHpMod(int hpMod){let m_hpMod = m_hpMod + hpMod; return;}
+	method void setPrice(int price){let m_price = m_price + price; return;}
+
+}

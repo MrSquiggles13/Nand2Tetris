@@ -1,0 +1,45 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Average/Main.jack
+
+// Inputs some numbers and computes their average
+class Armor {
+	field String m_type;
+	field int m_level;
+	field int m_defenceBoost;
+	field int m_price;
+
+	constructor Armor new(String type, int level, int defenceBoost, int price){
+		let m_type = type; let m_level = level; let m_defenceBoost = defenceBoost; let m_price = price; return this;
+	}
+
+	method void print(){
+		do Output.printString("Type: ");
+		do Output.printString(m_type);
+		do Output.println();
+		do Output.printString("Level: ");
+		do Output.printInt(m_level);
+		do Output.println();
+		do Output.printString("DEF Boost: ");
+		do Output.printInt(m_defenceBoost);
+		do Output.println();
+		do Output.printString("Price: ");
+		do Output.printInt(m_price);
+		do Output.println();
+
+		return;
+	}
+
+	//getters
+	method String getType(){return m_type;}
+	method int getLevel(){return m_level;}
+	method int getDefenceBoost(){return m_defenceBoost;}
+	method int getPrice(){return m_price;}
+
+	//setters
+	method void setType(String newType){let m_type = newType; return;}
+	method void setLevel(int newLevel){let m_level = m_level + newLevel; return;}
+	method void setDefenceBoost(int defence){let m_defenceBoost = m_defenceBoost + defence; return;}
+	method void setPrice(int price){let m_price = m_price + price; return;}
+}

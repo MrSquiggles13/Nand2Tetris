@@ -1,0 +1,322 @@
+function Player.new 0
+push constant 13
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 2
+push argument 3
+pop this 3
+push argument 4
+pop this 4
+push argument 5
+pop this 5
+push argument 6
+pop this 6
+push argument 7
+pop this 7
+push constant 0
+not
+pop this 8
+push constant 6
+push constant 0
+call Inventory.new 2
+pop this 9
+push constant 12
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 72
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 68
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 1
+push constant 1
+push constant 0
+call Weapon.new 4
+pop this 10
+push constant 14
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 66
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 1
+push constant 1
+push constant 0
+call Armor.new 4
+pop this 11
+push constant 4
+call String.new 1
+push constant 119
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 1
+push constant 5
+push constant 0
+call Potion.new 4
+pop this 12
+push pointer 0
+return
+function Player.levelUp 0
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push this 6
+push this 7
+gt
+not
+if-goto WHILE_END0
+push this 5
+push constant 1
+add
+pop this 5
+push this 6
+push this 7
+sub
+pop this 6
+push this 7
+push constant 50
+push constant 3
+call Math.divide 2
+push this 5
+push this 5
+call Math.multiply 2
+push this 5
+call Math.multiply 2
+call Math.multiply 2
+push constant 6
+sub
+push this 5
+push this 5
+call Math.multiply 2
+call Math.multiply 2
+add
+push constant 17
+push this 5
+call Math.multiply 2
+push constant 12
+sub
+add
+push constant 100
+add
+pop this 7
+push this 1
+push this 5
+push constant 3
+call Math.multiply 2
+push constant 2
+call Math.divide 2
+add
+pop this 1
+push this 1
+pop this 0
+push this 3
+push this 5
+push constant 2
+call Math.divide 2
+add
+pop this 3
+push this 3
+push constant 2
+call Math.divide 2
+pop this 2
+push this 4
+push this 5
+push constant 3
+call Math.divide 2
+add
+pop this 4
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Player.getHealthCurrent 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Player.getHealthTotal 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Player.getDamageMin 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function Player.getDamageMax 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function Player.getLevel 0
+push argument 0
+pop pointer 0
+push this 5
+return
+function Player.getExperienceCurrent 0
+push argument 0
+pop pointer 0
+push this 6
+return
+function Player.getExperienceNext 0
+push argument 0
+pop pointer 0
+push this 7
+return
+function Player.getIsAlive 0
+push argument 0
+pop pointer 0
+push this 8
+return
+function Player.getInventory 0
+push argument 0
+pop pointer 0
+push this 9
+return
+function Player.getWeapon 0
+push argument 0
+pop pointer 0
+push this 10
+return
+function Player.getPotion 0
+push argument 0
+pop pointer 0
+push this 12
+return
+function Player.setHealthCurrent 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+add
+pop this 0
+push constant 0
+return
+function Player.setHealthTotal 0
+push argument 0
+pop pointer 0
+push this 1
+push argument 1
+add
+pop this 1
+push constant 0
+return
+function Player.setDamageMin 0
+push argument 0
+pop pointer 0
+push this 2
+push argument 1
+add
+pop this 2
+push constant 0
+return
+function Player.setDamageMax 0
+push argument 0
+pop pointer 0
+push this 3
+push argument 1
+add
+pop this 3
+push constant 0
+return
+function Player.setLevel 0
+push argument 0
+pop pointer 0
+push this 5
+push argument 1
+add
+pop this 5
+push constant 0
+return
+function Player.setExperienceCurrent 0
+push argument 0
+pop pointer 0
+push this 6
+push argument 1
+add
+pop this 6
+push constant 0
+return
+function Player.setExperienceNext 0
+push argument 0
+pop pointer 0
+push this 7
+push argument 1
+add
+pop this 7
+push constant 0
+return
+function Player.setIsAlive 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 8
+push constant 0
+return
+function Player.setWeapon 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 10
+push constant 0
+return
+function Player.setPotion 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 12
+push constant 0
+return

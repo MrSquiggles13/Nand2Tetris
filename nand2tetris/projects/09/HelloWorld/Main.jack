@@ -1,0 +1,51 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/HelloWorld/Main.jack
+
+/** Hello World program. */
+class Main {
+   function void main() {
+      var int keyPressed;
+      var int count;
+      var int randNum;
+
+      do Output.printString("**Hit Any Key to Continue**");
+
+      while (keyPressed = 0){
+        let keyPressed = Keyboard.keyPressed();
+        let count = count + 1;
+        do Sys.wait(5);
+      }
+
+      do Random.setSeed(count);
+      do Output.printInt(count);
+      do Output.println();
+      do Output.println();
+
+      let randNum = Random.rand();
+      do Output.printInt(randNum);
+      do Output.println();
+      let randNum = Random.rand();
+      do Output.printInt(randNum);
+      do Output.println();
+      do Output.println();
+
+      let randNum = Random.randRange(30);
+      do Output.printInt(randNum);
+      do Output.println();
+      let randNum = Random.randRange(30);
+      do Output.printInt(randNum);
+      do Output.println();
+      let randNum = Random.randRange(30);
+      do Output.printInt(randNum);
+      do Output.println();
+
+      return;
+   }
+}
+
+/** testing random class */
+//set seed 
+//test random number
+//test random range
